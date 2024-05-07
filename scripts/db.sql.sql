@@ -115,3 +115,20 @@ INSERT INTO  cliente (id_cliente, nombre, telefono, domicilio)
     ('108' ,'luis' ,'9530099643' , 'luis@gmail.com'),
     ('109' ,'antonio' ,'9534634409' , 'antonio@gmail.com'),
     ('110' ,'leonel' ,'9534645900' , 'leo@gmail.com');
+    
+SELECT * FROM consecionaria;
+SELECT * FROM auto;
+SELECT * FROM concesionaria;
+SELECT * FROM cliente;
+SELECT * FROM empleado;
+SELECT * FROM historial;
+
+SELECT id_consecionaria, dirección,Correo,Telefono,rol FROM consecionaria;
+SELECT id_auto, marca, color, año, tipo, precio, combustible FROM auto;
+SELECT id_concesionaria, nombre, ubicacion, telefono,tipo_auto FROM concesionaria;
+SELECT id_cliente, nombre, telefono, domicilio FROM cliente;
+SELECT id_empleado, nombre,telefono,correo_electronico FROM empleado;
+SELECT  FROM historial;
+
+
+    
