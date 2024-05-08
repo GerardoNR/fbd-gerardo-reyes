@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS consecionaria (
-id_consecionaria int not null auto_increment,
+id_consecionaria VARCHAR (50) NOT NULL,
 direccion VARCHAR (150) NOT NULL,
 correo VARCHAR (50) NOT NULL,
 telefono VARCHAR (13),
@@ -16,14 +16,6 @@ tipo VARCHAR(30) NOT NULL,
 precio VARCHAR (15) NOT NULL,
 combustible VARCHAR(30) NOT NULL,
 PRIMARY KEY (id_auto)
-);
-CREATE TABLE concesionaria (
-id_concesionaria VARCHAR(30) NOT NULL,
-nombre VARCHAR(30) NOT NULL,
-ubicacion VARCHAR(30) NOT NULL,
-telefono VARCHAR(30) NOT NULL,
-tipo_auto VARCHAR(30) NOT NULL,
-PRIMARY KEY (id_concesionaria)
 );
 
 CREATE TABLE Cliente (
@@ -47,11 +39,11 @@ id_historial VARCHAR (30) NOT NULL,
 id_empleado VARCHAR (30) NOT NULL,
 id_auto VARCHAR(30) NOT NULL,
 id_cliente VARCHAR(30) NOT NULL,
-id_consecionaria VARCHAR(30) NOT NULL,
+id_consecionaria VARCHAR (50) NOT NULL,
 fecha_venta VARCHAR (15) NOT NULL,
 PRIMARY KEY (id_historial),
-FOREIGN KEY (id_auto) REFERENCES auto(id_auto),
 FOREIGN KEY (id_consecionaria) REFERENCES consecionaria(id_consecionaria),
+FOREIGN KEY (id_auto) REFERENCES auto(id_auto),
 FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
 FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado)
 );
@@ -80,17 +72,7 @@ values ('100' ,'Direccion 1', 'email@examplee.com', '3344546', 'usuario'),
     ('009' ,'audi' ,'amarillo' , '2005', 'deportivo' ,'320,000' , 'gasolina'),
     ('010' ,'mazda' ,'negro' , '2003', 'deportivo' ,'320,000' , 'gAsolina');
     
-    INSERT INTO  concesionaria (id_concesionaria, nombre, ubicacion, telefono,tipo_auto)
-    values ('111' ,'tienda1' ,'tlaxiaco' , '9531145698', 'deportivo'),
-    ('112' ,'tienda2' ,'oaxaca' , '9531145698', 'deportivo'),
-    ('113' ,'tienda3' ,'mexico' , '9531178890', 'deportivo'),
-    ('114' ,'tienda4' ,'puebla' , '9531146112', 'deportivo'),
-    ('115' ,'tienda5' ,'tijuana' , '9531143709', 'deportivo'),
-    ('116' ,'tienda6' ,'putla' , '9531180098', 'deportivo'),
-    ('117' ,'tienda7' ,'jalisco' , '9531146458', 'deportivo'),
-    ('118' ,'tienda8' ,'estados unidos' , '9531234328', 'deportivo'),
-    ('119' ,'tienda9' ,'durango' , '9531375209', 'deportivo'),
-    ('110' ,'tienda10' ,'chiapas' , '95534656987', 'deportivo');
+
     
 INSERT INTO  cliente (id_cliente, nombre, telefono, domicilio)
     values ('000001' ,'luis' ,'9534659863' , 'tlaxiaco'),
@@ -116,19 +98,30 @@ INSERT INTO  cliente (id_cliente, nombre, telefono, domicilio)
     ('109' ,'antonio' ,'9534634409' , 'antonio@gmail.com'),
     ('110' ,'leonel' ,'9534645900' , 'leo@gmail.com');
     
+    INSERT INTO historial (id_historial, id_empleado, id_auto, id_cliente, id_consecionaria, fecha_venta )
+    values ('1' ,'101 ' ,'001' , '000001' , '111' , '01/01/2024'),
+    ('2' ,'102 ' ,'002' , '000002' , '112' , '02/01/2024'),
+    ('3' ,'103 ' ,'003' , '000003' , '113' , '03/01/2024'),
+    ('4' ,'104 ' ,'004' , '000004' , '114' , '04/01/2024'),
+    ('5' ,'105 ' ,'005' , '000005' , '115' , '05/01/2024'),
+    ('6' ,'106 ' ,'006' , '000006' , '116' , '06/01/2024'),
+    ('7' ,'107 ' ,'007' , '000007' , '117' , '07/01/2024'),
+    ('8' ,'108 ' ,'008' , '000008' , '118' , '08/01/2024'),
+    ('9' ,'109 ' ,'009' , '000009' , '119' , '09/01/2024'),
+    ('10' ,'110 ' ,'010' , '000010' , '110' , '10/01/2024');
+    
+    
 SELECT * FROM consecionaria;
 SELECT * FROM auto;
-SELECT * FROM concesionaria;
 SELECT * FROM cliente;
 SELECT * FROM empleado;
 SELECT * FROM historial;
 
 SELECT id_consecionaria, dirección,Correo,Telefono,rol FROM consecionaria;
 SELECT id_auto, marca, color, año, tipo, precio, combustible FROM auto;
-SELECT id_concesionaria, nombre, ubicacion, telefono,tipo_auto FROM concesionaria;
 SELECT id_cliente, nombre, telefono, domicilio FROM cliente;
 SELECT id_empleado, nombre,telefono,correo_electronico FROM empleado;
-SELECT  FROM historial;
+SELECT id_historial, id_empleado, id_auto, id_cliente, id_consecionaria, fecha_venta FROM historial;
 
 
     
