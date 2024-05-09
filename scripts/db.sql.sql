@@ -49,7 +49,8 @@ FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado)
 );
 
 INSERT INTO consecionaria(id_consecionaria, dirección,Correo,Telefono,rol)
-values ('100' ,'Direccion 1', 'email@examplee.com', '3344546', 'usuario'),
+values
+       ('100' ,'Direccion 1', 'email@examplee.com', '3344546', 'usuario'),
        ('200' ,'Direccion 2', 'email2@ecample.com', '43576346', 'admin'),
 	   ('300' ,'Direccion 3', 'email2@egvervv.com', '435564', 'usuario'),
 	   ('400' ,'Direccion 4', 'email2@revhvtv.com', '43574363', 'admin'),
