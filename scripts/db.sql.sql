@@ -26,7 +26,7 @@ domicilio VARCHAR(30) NOT NULL,
 PRIMARY KEY (id_cliente)
 );
 
-CREATE TABLE Empleado (
+CREATE TABLE empleado (
 id_empleado VARCHAR (30) NOT NULL,
 nombre VARCHAR(30) NOT NULL,
 telefono VARCHAR(30) NOT NULL,
@@ -34,7 +34,7 @@ correo_electronico VARCHAR(30) NOT NULL,
 PRIMARY KEY (id_empleado)
 );
 
-CREATE TABLE Historial (
+CREATE TABLE historial (
 id_historial VARCHAR (30) NOT NULL,
 id_empleado VARCHAR (30) NOT NULL,
 id_auto VARCHAR(30) NOT NULL,
@@ -45,10 +45,10 @@ PRIMARY KEY (id_historial),
 FOREIGN KEY (id_consecionaria) REFERENCES consecionaria(id_consecionaria),
 FOREIGN KEY (id_auto) REFERENCES auto(id_auto),
 FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
-FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado)
+FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado)
 );
 
-INSERT INTO consecionaria(id_consecionaria, dirección,Correo,Telefono,rol)
+INSERT INTO consecionaria(id_consecionaria, direccion,Correo,Telefono,rol)
 values
        ('100' ,'Direccion 1', 'email@examplee.com', '3344546', 'usuario'),
        ('200' ,'Direccion 2', 'email2@ecample.com', '43576346', 'admin'),
@@ -100,16 +100,16 @@ INSERT INTO  cliente (id_cliente, nombre, telefono, domicilio)
     ('110' ,'leonel' ,'9534645900' , 'leo@gmail.com');
     
     INSERT INTO historial (id_historial, id_empleado, id_auto, id_cliente, id_consecionaria, fecha_venta )
-    values ('1' ,'101 ' ,'001' , '000001' , '111' , '01/01/2024'),
-    ('2' ,'102 ' ,'002' , '000002' , '112' , '02/01/2024'),
-    ('3' ,'103 ' ,'003' , '000003' , '113' , '03/01/2024'),
-    ('4' ,'104 ' ,'004' , '000004' , '114' , '04/01/2024'),
-    ('5' ,'105 ' ,'005' , '000005' , '115' , '05/01/2024'),
-    ('6' ,'106 ' ,'006' , '000006' , '116' , '06/01/2024'),
-    ('7' ,'107 ' ,'007' , '000007' , '117' , '07/01/2024'),
-    ('8' ,'108 ' ,'008' , '000008' , '118' , '08/01/2024'),
-    ('9' ,'109 ' ,'009' , '000009' , '119' , '09/01/2024'),
-    ('10' ,'110 ' ,'010' , '000010' , '110' , '10/01/2024');
+    values ('1' ,'101 ' ,'001' , '000001' , '100' , '01/01/2024'),
+    ('2' ,'102 ' ,'002' , '000002' , '200' , '02/01/2024'),
+    ('3' ,'103 ' ,'003' , '000003' , '300' , '03/01/2024'),
+    ('4' ,'104 ' ,'004' , '000004' , '400' , '04/01/2024'),
+    ('5' ,'105 ' ,'005' , '000005' , '500' , '05/01/2024'),
+    ('6' ,'106 ' ,'006' , '000006' , '600' , '06/01/2024'),
+    ('7' ,'107 ' ,'007' , '000007' , '700' , '07/01/2024'),
+    ('8' ,'108 ' ,'008' , '000008' , '800' , '08/01/2024'),
+    ('9' ,'109 ' ,'009' , '000009' , '900' , '09/01/2024'),
+    ('10' ,'110 ' ,'010' , '000010' , '1000' , '10/01/2024');
     
     
 SELECT * FROM consecionaria;
@@ -118,7 +118,7 @@ SELECT * FROM cliente;
 SELECT * FROM empleado;
 SELECT * FROM historial;
 
-SELECT id_consecionaria, dirección,Correo,Telefono,rol FROM consecionaria;
+SELECT id_consecionaria, direccion,Correo,Telefono,rol FROM consecionaria;
 SELECT id_auto, marca, color, año, tipo, precio, combustible FROM auto;
 SELECT id_cliente, nombre, telefono, domicilio FROM cliente;
 SELECT id_empleado, nombre,telefono,correo_electronico FROM empleado;
