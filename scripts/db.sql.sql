@@ -38,9 +38,9 @@ CREATE TABLE historial (
 id_historial VARCHAR (30) NOT NULL,
 id_empleado VARCHAR (30) NOT NULL,
 id_auto VARCHAR(30) NOT NULL,
-id_cliente VARCHAR(30) NOT NULL,
+id_cliente VARCHAR(50) NOT NULL,
 id_consecionaria VARCHAR (50) NOT NULL,
-fecha_venta VARCHAR (15) NOT NULL,
+fecha_venta YEAR,
 PRIMARY KEY (id_historial),
 FOREIGN KEY (id_consecionaria) REFERENCES consecionaria(id_consecionaria),
 FOREIGN KEY (id_auto) REFERENCES auto(id_auto),
@@ -100,7 +100,8 @@ INSERT INTO  cliente (id_cliente, nombre, telefono, domicilio)
     ('110' ,'leonel' ,'9534645900' , 'leo@gmail.com');
     
     INSERT INTO historial (id_historial, id_empleado, id_auto, id_cliente, id_consecionaria, fecha_venta )
-    values ('1' ,'101 ' ,'001' , '000001' , '100' , '01/01/2024'),
+    values
+    ('1' ,'101 ' ,'001' , '000001' , '100' , '01/01/2024'),
     ('2' ,'102 ' ,'002' , '000002' , '200' , '02/01/2024'),
     ('3' ,'103 ' ,'003' , '000003' , '300' , '03/01/2024'),
     ('4' ,'104 ' ,'004' , '000004' , '400' , '04/01/2024'),
@@ -125,4 +126,3 @@ SELECT id_empleado, nombre,telefono,correo_electronico FROM empleado;
 SELECT id_historial, id_empleado, id_auto, id_cliente, id_consecionaria, fecha_venta FROM historial;
 
 
-    
