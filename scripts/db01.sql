@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS consecionaria (
-id_consecionaria VARCHAR (50) NOT NULL,
+id_consecionaria int not null auto_increment,
 direccion VARCHAR (150) NOT NULL,
 correo VARCHAR (50) NOT NULL,
 telefono VARCHAR (13),
@@ -17,6 +17,14 @@ precio VARCHAR (15) NOT NULL,
 combustible VARCHAR(30) NOT NULL,
 PRIMARY KEY (id_auto)
 );
+CREATE TABLE concesionaria (
+id_concesionaria VARCHAR(30) NOT NULL,
+nombre VARCHAR(30) NOT NULL,
+ubicacion VARCHAR(30) NOT NULL,
+telefono VARCHAR(30) NOT NULL,
+tipo_auto VARCHAR(30) NOT NULL,
+PRIMARY KEY (id_concesionaria)
+);
 
 CREATE TABLE Cliente (
 id_cliente VARCHAR(50) NOT NULL,
@@ -26,7 +34,7 @@ domicilio VARCHAR(30) NOT NULL,
 PRIMARY KEY (id_cliente)
 );
 
-CREATE TABLE empleado (
+CREATE TABLE Empleado (
 id_empleado VARCHAR (30) NOT NULL,
 nombre VARCHAR(30) NOT NULL,
 telefono VARCHAR(30) NOT NULL,
@@ -34,25 +42,22 @@ correo_electronico VARCHAR(30) NOT NULL,
 PRIMARY KEY (id_empleado)
 );
 
-CREATE TABLE historial (
-id_historial INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE Historial (
+id_historial VARCHAR (30) NOT NULL,
 id_empleado VARCHAR (30) NOT NULL,
 id_auto VARCHAR(30) NOT NULL,
-id_cliente VARCHAR(50) NOT NULL,
-id_consecionaria VARCHAR (50) NOT NULL,
-fecha_venta date,
+id_cliente VARCHAR(30) NOT NULL,
+id_consecionaria VARCHAR(30) NOT NULL,
+fecha_venta VARCHAR (15) NOT NULL,
 PRIMARY KEY (id_historial),
-FOREIGN KEY (id_consecionaria) REFERENCES consecionaria(id_consecionaria) ON UPDATE no action on delete no action,
-FOREIGN KEY (id_auto) REFERENCES auto(id_auto) ON UPDATE no action on delete no action,
-FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente) ON UPDATE no action on delete no action,
-FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado) ON UPDATE no action on delete no action
+FOREIGN KEY (id_auto) REFERENCES auto(id_auto),
+FOREIGN KEY (id_consecionaria) REFERENCES consecionaria(id_consecionaria),
+FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
+FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado)
 );
 
-drop table historial;
-
-INSERT INTO consecionaria(id_consecionaria, direccion,Correo,Telefono,rol)
-values
-       ('100' ,'Direccion 1', 'email@examplee.com', '3344546', 'usuario'),
+INSERT INTO consecionaria(id_consecionaria, dirección,Correo,Telefono,rol)
+values ('100' ,'Direccion 1', 'email@examplee.com', '3344546', 'usuario'),
        ('200' ,'Direccion 2', 'email2@ecample.com', '43576346', 'admin'),
 	   ('300' ,'Direccion 3', 'email2@egvervv.com', '435564', 'usuario'),
 	   ('400' ,'Direccion 4', 'email2@revhvtv.com', '43574363', 'admin'),
@@ -75,7 +80,17 @@ values
     ('009' ,'audi' ,'amarillo' , '2005', 'deportivo' ,'320,000' , 'gasolina'),
     ('010' ,'mazda' ,'negro' , '2003', 'deportivo' ,'320,000' , 'gAsolina');
     
-
+    INSERT INTO  concesionaria (id_concesionaria, nombre, ubicacion, telefono,tipo_auto)
+    values ('111' ,'tienda1' ,'tlaxiaco' , '9531145698', 'deportivo'),
+    ('112' ,'tienda2' ,'oaxaca' , '9531145698', 'deportivo'),
+    ('113' ,'tienda3' ,'mexico' , '9531178890', 'deportivo'),
+    ('114' ,'tienda4' ,'puebla' , '9531146112', 'deportivo'),
+    ('115' ,'tienda5' ,'tijuana' , '9531143709', 'deportivo'),
+    ('116' ,'tienda6' ,'putla' , '9531180098', 'deportivo'),
+    ('117' ,'tienda7' ,'jalisco' , '9531146458', 'deportivo'),
+    ('118' ,'tienda8' ,'estados unidos' , '9531234328', 'deportivo'),
+    ('119' ,'tienda9' ,'durango' , '9531375209', 'deportivo'),
+    ('110' ,'tienda10' ,'chiapas' , '95534656987', 'deportivo');
     
 INSERT INTO  cliente (id_cliente, nombre, telefono, domicilio)
     values ('000001' ,'luis' ,'9534659863' , 'tlaxiaco'),
@@ -101,100 +116,18 @@ INSERT INTO  cliente (id_cliente, nombre, telefono, domicilio)
     ('109' ,'antonio' ,'9534634409' , 'antonio@gmail.com'),
     ('110' ,'leonel' ,'9534645900' , 'leo@gmail.com');
     
-
-INSERT INTO `consecionaria`.`historial` (`id_empleado`, `id_auto`, `id_cliente`, `id_consecionaria`, `fecha_venta`) 
-    VALUES ('101', '001', '000001', '100', '2024-02-01'),
-    ('102', '002', '000002', '200', '2024-02-02'),
-    ('103', '003', '000003', '300', '2024-02-03'),
-    ('104', '004', '000004', '400', '2024-02-04'),
-    ('105', '005', '000005', '500', '2024-02-05'),
-    ('106', '006', '000006', '600', '2024-02-06'),
-    ('107', '007', '000007', '700', '2024-02-07'),
-    ('108', '008', '000008', '800', '2024-02-08'),
-    ('109', '009', '000009', '900', '2024-02-09'),
-    ('110', '010', '000010', '1000', '2024-02-10');
-    
-    
 SELECT * FROM consecionaria;
 SELECT * FROM auto;
+SELECT * FROM concesionaria;
 SELECT * FROM cliente;
 SELECT * FROM empleado;
 SELECT * FROM historial;
 
-SELECT id_consecionaria, direccion,Correo,Telefono,rol FROM consecionaria;
+SELECT id_consecionaria, dirección,Correo,Telefono,rol FROM consecionaria;
 SELECT id_auto, marca, color, año, tipo, precio, combustible FROM auto;
+SELECT id_concesionaria, nombre, ubicacion, telefono,tipo_auto FROM concesionaria;
 SELECT id_cliente, nombre, telefono, domicilio FROM cliente;
 SELECT id_empleado, nombre,telefono,correo_electronico FROM empleado;
-SELECT id_historial, id_empleado, id_auto, id_cliente, id_consecionaria, fecha_venta FROM historial;
+SELECT  FROM historial;
 
 
-SELECT * FROM auto ORDER BY  año  ASC;
-SELECT * FROM historial ORDER BY Fecha_venta DESC;
-
-SELECT COUNT(*) FROM consecionaria;
-SELECT COUNT(*) FROM auto;
-SELECT COUNT(*) FROM cliente;
-SELECT COUNT(*) FROM empleado;
-SELECT COUNT(*) FROM historial;
-
-select count(l.id_auto), sum(a.precio)
-from historial as l
-inner join auto as a on a.id_auto = l.id_auto
-where -- mes;
-
-SELECT MAX(precio), MIN(precio) FROM auto;
-
-SELECT empleado.id_empleado, cliente.id_cliente
-FROM empleado
-INNER JOIN  cliente ON empleado.id_empleado =cliente.id_empleado;
-
-SELECT auto.id_auto, historial.id_historial
-FROM auto
-INNER JOIN historial ON auto.id_auto= cliente.id_empleado;
-
-
-
-SELECT marca AS empleado, marca AS telefono
-FROM auto
-JOIN id_auto ON e.id_auto= auto.id
-WHERE e.precio > 50000;
-
-
-SELECT marca AS auto, e.precio
-FROM auto
-WHERE e.precio > (
-SELECT AVG(precio) FROM auto WHERE marca = e.marca
-);
-
-
-SELECT id_auto, AVG(precio) AS id_precio
-FROM auto e
-GROUP BY id_auto;
-
-SELECT id_auto, fecha_venta
-FROM historial
-WHERE DATEPART(YEAR, fecha_venta) = 2023;
-
-SELECT nombre, 'Empleado' AS id_empleado
-FROM empleado
-UNION
-SELECT nombre, 'Cliente' AS id_empleado
-FROM empleado;
-
-
-SELECT nombre, domicilio
-FROM cliente
-WHERE domicilio LIKE '%Calle%';
-
-
-SELECT marca
-FROM auto
-WHERE EXISTS (
-      SELECT 1 FROM precio WHERE id_auto = id.auto
-);
-
-
-SELECT marca, precio
-FROM auto
-ORDER BY precio DESC
-LIMIT 10 OFFSET 10;
