@@ -144,26 +144,26 @@ where -- mes;
 
 SELECT MAX(precio), MIN(precio) FROM auto;
 
-SELECT empleado.id_empleado, cliente.id_cliente
+SELECT empleado.id_empleado, id_cliente
 FROM empleado
 INNER JOIN  cliente ON empleado.id_empleado =cliente.id_empleado;
 
 SELECT auto.id_auto, historial.id_historial
 FROM auto
-INNER JOIN historial ON auto.id_auto= cliente.id_empleado;
+INNER JOIN historial ON auto.id_auto = cliente.id_empleado;
 
 
 
 SELECT marca AS empleado, marca AS telefono
 FROM auto
-JOIN id_auto ON e.id_auto= auto.id
+JOIN id_auto ON id_auto= auto.id
 WHERE e.precio > 50000;
 
 
-SELECT marca AS auto, e.precio
+SELECT marca AS auto, precio
 FROM auto
-WHERE e.precio > (
-SELECT AVG(precio) FROM auto WHERE marca = e.marca
+WHERE precio > (
+SELECT AVG(e.precio) FROM auto WHERE marca = e.marca
 );
 
 
@@ -173,7 +173,7 @@ GROUP BY id_auto;
 
 SELECT id_auto, fecha_venta
 FROM historial
-WHERE DATEPART(YEAR, fecha_venta) = 2023;
+WHERE YEAR(fecha_venta) = 2023;
 
 SELECT nombre, 'Empleado' AS id_empleado
 FROM empleado
@@ -184,7 +184,7 @@ FROM empleado;
 
 SELECT nombre, domicilio
 FROM cliente
-WHERE domicilio LIKE '%Calle%';
+WHERE domicilio LIKE '%domicilio%';
 
 
 SELECT marca
