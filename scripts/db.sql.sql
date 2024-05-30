@@ -150,14 +150,14 @@ INNER JOIN  cliente ON empleado.id_empleado =cliente.id_empleado;
 
 SELECT auto.id_auto, historial.id_historial
 FROM auto
-INNER JOIN historial ON auto.id_auto = cliente.id_empleado;
+INNER JOIN historial ON auto.id_auto = cliente.id_cliente;
 
 
 
 SELECT marca AS empleado, marca AS telefono
 FROM auto
-JOIN id_auto ON id_auto= auto.id
-WHERE e.precio > 50000;
+JOIN id_auto ON id_auto = id_auto
+WHERE precio > 50000;
 
 
 SELECT marca AS auto, precio
