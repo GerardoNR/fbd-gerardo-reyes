@@ -7,13 +7,16 @@ rol ENUM('admin', 'usuario','reporter'),
 PRIMARY KEY (id_consecionaria)
 );
 
-CREATE TABLE Auto(
-id_auto VARCHAR (30) NOT NULL,
+CREATE TABLE auto(
+id_auto int auto_increment,
+id_marca int references marca_auto(id_marca),
 marca VARCHAR(30) NOT NULL,
-color VARCHAR(30) NOT NULL,
+id_color int references color_auto(id_color),
+color VARCHAR(30),
 año VARCHAR (4) NOT NULL,
 tipo VARCHAR(30) NOT NULL,
 precio VARCHAR (15) NOT NULL,
+id_combustible int references combustible_auto(id_combustible),
 combustible VARCHAR(30) NOT NULL,
 PRIMARY KEY (id_auto)
 );
@@ -25,6 +28,96 @@ telefono VARCHAR(30) NOT NULL,
 domicilio VARCHAR(30) NOT NULL,
 PRIMARY KEY (id_cliente)
 );
+create table color_auto(
+id_color int auto_increment,
+color varchar(30),
+primary key (id_color)
+);
+CREATE TABLE marca_auto (
+    id_marca INT AUTO_INCREMENT,
+    marca VARCHAR(30),
+    PRIMARY KEY (id_marca)
+);
+CREATE TABLE combustible_auto (
+    id_combustible INT AUTO_INCREMENT,
+    combustible VARCHAR(30),
+    PRIMARY KEY (id_combustible)
+);
+
+INSERT INTO combustible_auto (combustible)
+VALUES 
+    ('Gasoline'),
+    ('Diesel'),
+    ('Electric'),
+    ('Hybrid'),
+    ('Natural Gas'),
+    ('Ethanol'),
+    ('Hydrogen'),
+    ('Propane'),
+    ('Biodiesel'),
+    ('Methanol');
+    
+SELECT * FROM combustible_auto;
+
+ALTER TABLE auto ADD COLUMN combustible INT REFERENCES combustible_auto(id_combustible);
+ALTER TABLE auto DROP COLUMN combustible;
+    
+    
+INSERT INTO marca_auto (marca)
+VALUES 
+    ('Toyota'),
+    ('Honda'),
+    ('Ford'),
+    ('Chevrolet'),
+    ('Nissan'),
+    ('BMW'),
+    ('Mercedes-Benz'),
+    ('Volkswagen'),
+    ('Hyundai'),
+    ('Audi');
+SELECT * FROM auto;
+
+UPDATE auto SET marca = 1 WHERE id_auto = 1;
+UPDATE auto SET marca = 2 WHERE id_auto = 2;
+UPDATE auto SET marca = 3 WHERE id_auto = 3;
+UPDATE auto SET marca = 4 WHERE id_auto = 4;
+UPDATE auto SET marca = 5 WHERE id_auto = 5;
+UPDATE auto SET marca = 6 WHERE id_auto = 6;
+UPDATE auto SET marca = 7 WHERE id_auto = 7;
+UPDATE auto SET marca = 8 WHERE id_auto = 8;
+UPDATE auto SET marca = 9 WHERE id_auto = 9;
+UPDATE auto SET marca = 10 WHERE id_auto = 10;
+
+ALTER TABLE auto ADD COLUMN marca int REFERENCES marca_auto(id_marca);
+ALTER TABLE auto DROP COLUMN marca;
+
+insert into color_auto(color)
+values 
+("rojo"),
+('verde'),
+('azul'),
+('amarillo'),
+('naranja'),
+('morado'),
+('rosa'),
+('marrón'),
+('negro'),
+('blanco');
+select * from auto;
+
+ALTER TABLE auto ADD COLUMN color INT REFERENCES color_auto(id_color);
+ALTER TABLE auto DROP COLUMN color;
+
+UPDATE auto SET id_color = 1 WHERE id_auto = 1;
+UPDATE auto SET id_color = 2 WHERE id_auto = 2;
+UPDATE auto SET id_color = 3 WHERE id_auto = 3;
+UPDATE auto SET id_color = 4 WHERE id_auto = 4;
+UPDATE auto SET id_color = 5 WHERE id_auto = 5;
+UPDATE auto SET id_color = 6 WHERE id_auto = 6;
+UPDATE auto SET id_color = 7 WHERE id_auto = 7;
+UPDATE auto SET id_color = 8 WHERE id_auto = 8;
+UPDATE auto SET id_color = 9 WHERE id_auto = 9;
+UPDATE auto SET id_color = 10 WHERE id_auto = 10;
 
 CREATE TABLE empleado (
 id_empleado VARCHAR (30) NOT NULL,
@@ -52,28 +145,29 @@ drop table historial;
 
 INSERT INTO consecionaria(id_consecionaria, direccion,Correo,Telefono,rol)
 values
-       ('100' ,'Direccion 1', 'email@examplee.com', '3344546', 'usuario'),
-       ('200' ,'Direccion 2', 'email2@ecample.com', '43576346', 'admin'),
-	   ('300' ,'Direccion 3', 'email2@egvervv.com', '435564', 'usuario'),
-	   ('400' ,'Direccion 4', 'email2@revhvtv.com', '43574363', 'admin'),
-	   ('500' ,'Direccion 5', 'email2@ebjyjhe.com', '435437', 'usuario'),
-	   ('600' ,'Direccion 6', 'email2@ytrbtds.com', '47878435', 'admin'),
-	   ('700' ,'Direccion 7', 'email2@3454hvr.com', '4367745', 'usuario'),
-	   ('800' ,'Direccion 8', 'email2@ballers.com', '74365546', 'admin'),
-	   ('900' ,'Direccion 9', 'email2@erytbju.com', '44364477', 'usuario'),
-	   ('1000' ,'Direccion 10', 'email2@56un6g.com', '654742757', 'admin');
+       ('Direccion 1', 'email@examplee.com', '3344546', 'usuario'),
+       ('Direccion 2', 'email2@ecample.com', '43576346', 'admin'),
+	   ('Direccion 3', 'email2@egvervv.com', '435564', 'usuario'),
+	   ('Direccion 4', 'email2@revhvtv.com', '43574363', 'admin'),
+	   ('Direccion 5', 'email2@ebjyjhe.com', '435437', 'usuario'),
+	   ('Direccion 6', 'email2@ytrbtds.com', '47878435', 'admin'),
+	   ('Direccion 7', 'email2@3454hvr.com', '4367745', 'usuario'),
+	   ('Direccion 8', 'email2@ballers.com', '74365546', 'admin'),
+	   ('Direccion 9', 'email2@erytbju.com', '44364477', 'usuario'),
+	   ('Direccion 10', 'email2@56un6g.com', '654742757', 'admin');
 
- INSERT INTO  Auto (id_auto, marca, color, año, tipo, precio, combustible)
-    values ('001' , 'ferrari ' ,'blanco' , '2000', 'deportivo' ,'200,000' , 'gasolina'),
-    ('002' ,'toyota' ,'azul' , '1990', 'deportivo' ,'500,000' , 'gasolina'),
-    ('003' ,'ford' ,'rojo' , '2001', 'deportivo' ,'350,000' , 'gasolina'),
-    ('004' ,'nissan' ,'negro' , '1985', 'deportivo' ,'480,000' , 'gasolina'),
-    ('005' ,'Chevrolet' ,'verde' , '1995', 'deportivo' ,'400,000' , 'gasolina'),
-    ('006' ,'nissan' ,'cafe' , '1999', 'deportivo' ,'380,000' , 'gasolina'),
-    ('007' ,'Volkswagen' ,'negro' , '2000', 'deportivo' ,'41,000' , 'gasolina'),
-    ('008' ,'honda' ,'blanco' , '2001', 'deportivo' ,'440,000' , 'gasolina'),
-    ('009' ,'audi' ,'amarillo' , '2005', 'deportivo' ,'320,000' , 'gasolina'),
-    ('010' ,'mazda' ,'negro' , '2003', 'deportivo' ,'320,000' , 'gAsolina');
+ INSERT INTO  auto ( marca, id_color, año, tipo, precio, combustible)
+    values 
+    ( 'ferrari ' ,'1' , '2000', 'deportivo' ,'200,000' , 'gasolina'),
+    ('toyota' ,'2' , '1990', 'deportivo' ,'500,000' , 'gasolina'),
+    ('ford' ,'3' , '2001', 'deportivo' ,'350,000' , 'gasolina'),
+    ('nissan' ,'4' , '1985', 'deportivo' ,'480,000' , 'gasolina'),
+    ('Chevrolet' ,'5' , '1995', 'deportivo' ,'400,000' , 'gasolina'),
+    ( 'nissan' ,'6' , '1999', 'deportivo' ,'380,000' , 'gasolina'),
+    ('Volkswagen' ,'7' , '2000', 'deportivo' ,'41,000' , 'gasolina'),
+    ('honda' ,'8' , '2001', 'deportivo' ,'440,000' , 'gasolina'),
+    ('audi' ,'9' , '2005', 'deportivo' ,'320,000' , 'gasolina'),
+    ('mazda' ,'10' , '2003', 'deportivo' ,'320,000' , 'gAsolina');
     
 
     
