@@ -137,22 +137,23 @@ SELECT COUNT(*) FROM cliente;
 SELECT COUNT(*) FROM empleado;
 SELECT COUNT(*) FROM historial;
 
-select count(l.id_auto), sum(a.precio)
-from historial as l
-inner join auto as a on a.id_auto = l.id_auto
-where -- mes;
+
+SELECT COUNT(l.id_auto), SUM(a.precio)
+FROM historial AS l
+INNER JOIN auto AS a ON a.id_auto = l.id_auto
+WHERE l.fecha_venta = 2024;
+
 
 SELECT MAX(precio), MIN(precio) FROM auto;
 
-SELECT empleado.id_empleado, id_cliente
+SELECT empleado.id_empleado, cliente.id_cliente
 FROM empleado
-INNER JOIN  cliente ON empleado.id_empleado =cliente.id_empleado;
+INNER JOIN cliente ON empleado.id_cliente = cliente.id_cliente;
+
 
 SELECT auto.id_auto, historial.id_historial
 FROM auto
-INNER JOIN historial ON auto.id_auto = cliente.id_cliente;
-
-
+INNER JOIN historial ON auto.id_auto = historial.id_auto;
 
 SELECT marca AS empleado, marca AS telefono
 FROM auto
@@ -160,12 +161,12 @@ JOIN id_auto ON id_auto = id_auto
 WHERE precio > 50000;
 
 
+
 SELECT marca AS auto, precio
 FROM auto
 WHERE precio > (
-SELECT AVG(e.precio) FROM auto WHERE marca = e.marca
+    SELECT AVG(precio) FROM auto AS e WHERE auto.marca = e.marca
 );
-
 
 SELECT id_auto, AVG(precio) AS id_precio
 FROM auto e
@@ -190,7 +191,7 @@ WHERE domicilio LIKE '%domicilio%';
 SELECT marca
 FROM auto
 WHERE EXISTS (
-      SELECT 1 FROM precio WHERE id_auto = id.auto
+      SELECT 1 FROM precio WHERE precio.id_auto = auto.id_auto
 );
 
 
