@@ -10,14 +10,11 @@ PRIMARY KEY (id_consecionaria)
 CREATE TABLE auto(
 id_auto int auto_increment,
 id_marca int references marca_auto(id_marca),
-marca VARCHAR(30) NOT NULL,
 id_color int references color_auto(id_color),
-color VARCHAR(30),
 año VARCHAR (4) NOT NULL,
 tipo VARCHAR(30) NOT NULL,
 precio VARCHAR (15) NOT NULL,
 id_combustible int references combustible_auto(id_combustible),
-combustible VARCHAR(30) NOT NULL,
 PRIMARY KEY (id_auto)
 );
 
